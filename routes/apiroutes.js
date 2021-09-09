@@ -4,8 +4,8 @@ module.exports = function (app) {
   //get all info for workouts page
   app.get("/api/workouts", (req, res) => {
     db.Workout.find({})
-      .then((dbWorkout) => {
-        res.json(dbWorkout);
+      .then((workoutdb) => {
+        res.json(workoutdb);
       })
       .catch((err) => {
         res.status(500).json(err);
@@ -14,8 +14,8 @@ module.exports = function (app) {
   //get info for a range
   app.get("/api/workouts/range", ({}, res) => {
     db.Workout.find({})
-      .then((dbWorkout) => {
-        res.json(dbWorkout);
+      .then((workoutdb) => {
+        res.json(workoutdb);
       })
       .catch((err) => {
         res.status(500).json(err);
@@ -24,8 +24,8 @@ module.exports = function (app) {
   //submit new completed workouts
   app.post("/api/workouts", (req, res) => {
     db.Workout.create(req.body)
-      .then((dbWorkout) => {
-        res.json(dbWorkout);
+      .then((workoutdb) => {
+        res.json(workoutdb);
       })
       .catch((err) => {
         res.status(500).json(err);
@@ -37,8 +37,8 @@ module.exports = function (app) {
       { _id: req.params.id },
       { exercises: req.body }
     )
-      .then((dbWorkout) => {
-        res.json(dbWorkout);
+      .then((workoutdb) => {
+        res.json(workoutdb);
       })
       .catch((err) => {
         res.status(500).json(err);
