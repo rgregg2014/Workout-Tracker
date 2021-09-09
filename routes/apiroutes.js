@@ -21,21 +21,24 @@ module.exports = function (app) {
         res.status(500).json(err);
       });
   });
+
   //submit new completed workouts
   app.post("/api/workouts", (req, res) => {
-    db.Workout.create(req.body)
-      .then((workoutdb) => {
-        res.json(workoutdb);
+    const workout = body;
+    db.Workout.save(workout, (err, saved))
+      .then((saved) => {
+        res.json(saved);
       })
       .catch((err) => {
         res.status(500).json(err);
       });
   });
+
   //update workouts by id
   app.put("/api/workouts/:id", (req, res) => {
-    db.Workout.findByIdAndUpdate(
-      { _id: req.params.id },
-      { exercises: req.body }
+    db.Workout.updateOne(
+      { _id: mongojs.ObjectId(params.id) },
+      { $set: { exercises: req.body } }
     )
       .then((workoutdb) => {
         res.json(workoutdb);
